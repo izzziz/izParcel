@@ -8,7 +8,7 @@ each parcel. The app will have a parcel list screen for viewing the list of parc
 input screen for entering the details of new parcels, and an edit screen for viewing and updating the details of the 
 parcel delivery.
 
-## ScreenShot
+// ## ScreenShot
 
 ![]()
 
