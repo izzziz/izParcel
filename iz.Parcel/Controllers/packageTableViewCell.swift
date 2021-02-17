@@ -7,17 +7,32 @@
 
 import UIKit
 
+//protocol ParcelInformationDelegate {
+//    func setParcel(name: String, address: String, trackingNumber: String)
+//}
+//    
 class packageTableViewCell: UITableViewCell {
+    func setParcel(name: String, address: String, trackingNumber: String) {
 
+    }
+  
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var trackingNumLabel: UILabel!
+    
+//    var parcelDelegate : ParcelInformationDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+   //     parcelDelegate?.setParcel(name: "", address: "", trackingNumber: "")
     }
+    
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+        
+       
+       
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }
