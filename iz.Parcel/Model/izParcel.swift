@@ -22,16 +22,16 @@ struct IzParcel: Codable {
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("izParcel").appendingPathExtension("plist")
     
     static func loadIzParcel() -> [IzParcel]? {
-        guard let codedToDos = try? Data(contentsOf: ArchiveURL) else { return nil }
+        guard let codedIzparcels = try? Data(contentsOf: ArchiveURL) else { return nil }
         
         let propertyListDecoder = PropertyListDecoder()
-        return try? propertyListDecoder.decode(Array<IzParcel>.self, from: codedToDos)
+        return try? propertyListDecoder.decode(Array<IzParcel>.self, from: codedIzparcels)
     }
     
     static func saveIzParcel(_ izParcel: [IzParcel]) {
         let propertyListEncoder = PropertyListEncoder()
-        let codedToDos = try? propertyListEncoder.encode(izParcel)
-        try? codedToDos?.write(to: ArchiveURL, options: .noFileProtection)
+        let codedIzparcel = try? propertyListEncoder.encode(izParcel)
+        try? codedIzparcel?.write(to: ArchiveURL, options: .noFileProtection)
     }
 }
 

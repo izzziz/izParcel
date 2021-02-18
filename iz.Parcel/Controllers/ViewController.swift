@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
@@ -25,9 +24,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     // MARK: - TableView data source
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return IzParcelz.count
@@ -42,7 +41,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.trackingNumLabel.text = izPackage.trackingNumber
 
         return cell
-
     }
     // MARK: - TableView Delegate
     

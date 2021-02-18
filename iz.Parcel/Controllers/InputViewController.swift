@@ -43,20 +43,20 @@ class InputViewController: UITableViewController {
     
     @IBAction func saveButton(_ sender: UIButton) {
         print("A")
-        self.performSegue(withIdentifier: "saveUnwind", sender: self)
-        
-        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            guard segue.identifier == "saveUnwind" else { return }
-            
-            let name = nameTextLabel.text!
-            let address = addressTextLabel.text!
-            let trackingNumber = trackingNumTextLabel.text!
-            let notes = notesTextLabel.text!
-            let dates = dateAndTimeTextLabel.date
-            let statusUpdate = statusUpdateTextLabel.datePickerMode
-            
-            izParcel = IzParcel(name: name, address: address, trackingNumber: trackingNumber, notes: notes, dateAndTime: dates, statusUpdated: dates)
-        }
-    }
+        performSegue(withIdentifier: "saveUnwind", sender: self)
 
+}
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "saveUnwind" else { return }
+        
+        let name = nameTextLabel.text!
+        let address = addressTextLabel.text!
+        let trackingNumber = trackingNumTextLabel.text!
+        let notes = notesTextLabel.text!
+        let dates = dateAndTimeTextLabel.date
+        
+  //      let statusUpdate = statusUpdateTextLabel.datePickerMode
+        
+        izParcel = IzParcel(name: name, address: address, trackingNumber: trackingNumber, notes: notes, dateAndTime: dates, statusUpdated: dates)
+    }
 }
