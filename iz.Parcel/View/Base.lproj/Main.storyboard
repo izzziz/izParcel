@@ -23,45 +23,20 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="80" id="fpI-dJ-lBJ" customClass="packageTableViewCell" customModule="iz_Parcel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fpI-dJ-lBJ" id="DP8-Gj-LGT">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fpI-dJ-lBJ" id="DP8-Gj-LGT" customClass="IzparcelCell" customModule="iz_Parcel" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iXc-F6-QQZ">
-                                                    <rect key="frame" x="170" y="29" width="74" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M40-aj-fgI">
-                                                    <rect key="frame" x="304" y="30" width="80" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MG-Ro-Bw8">
-                                                    <rect key="frame" x="0.0" y="30" width="74" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="addressLabel" destination="iXc-F6-QQZ" id="dRI-ii-7zC"/>
-                                            <outlet property="nameLabel" destination="1MG-Ro-Bw8" id="vL5-Dp-gM1"/>
-                                            <outlet property="trackingNumLabel" destination="M40-aj-fgI" id="pPR-oT-5cr"/>
                                             <segue destination="BSp-wy-EDf" kind="showDetail" identifier="showDetails" id="rKb-qE-NFH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="FU2-HW-FCO"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Ylo-Pq-dv7"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Hx5-dV-rtH"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="kNi-OB-4Kv"/>
+                                    <outlet property="prefetchDataSource" destination="BYZ-38-t0r" id="nC8-Rq-TVb"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -82,7 +57,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="6AI-Xl-KkM" id="KJ6-p2-3TP"/>
+                        <outlet property="tableView" destination="6AI-Xl-KkM" id="1yf-Wb-1ff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -304,7 +279,6 @@
                                                             <state key="normal" title="SAVE"/>
                                                             <connections>
                                                                 <action selector="saveButton:" destination="BSp-wy-EDf" eventType="touchUpInside" id="Jiq-Hv-a96"/>
-                                                                <segue destination="HbB-sx-YWo" kind="unwind" identifier="saveUnwind" unwindAction="unwindToMainViewWithSegue:" id="rAQ-ts-NVa"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -330,9 +304,11 @@
                         <outlet property="dateAndTimeTextLabel" destination="0Wp-WC-Voh" id="M0h-mA-4yW"/>
                         <outlet property="nameTextLabel" destination="NzM-70-LqC" id="1Ju-Kf-UVn"/>
                         <outlet property="notesTextLabel" destination="RPe-Tb-Glf" id="sCR-e0-Inz"/>
+                        <outlet property="saveButton" destination="F28-gs-c1d" id="B13-jx-jWL"/>
                         <outlet property="statusTextLabel" destination="GWU-dG-17c" id="qM6-zD-kum"/>
                         <outlet property="statusUpdateTextLabel" destination="pOt-6F-Ud3" id="a0X-Wb-JUe"/>
                         <outlet property="trackingNumTextLabel" destination="d7L-v6-QNJ" id="zAf-DH-M2P"/>
+                        <segue destination="HbB-sx-YWo" kind="unwind" identifier="saveUnwind" unwindAction="prepareForUnwindWithSegue:" id="hkP-Ad-VnB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJk-q8-MY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

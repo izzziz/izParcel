@@ -9,7 +9,7 @@ import UIKit
 
 class InputViewController: UITableViewController {
     
-    var izParcel = [IzParcel]()
+    var izParcel: IzParcel?
     
     @IBOutlet weak var statusTextLabel: UITextField!
     
@@ -22,106 +22,41 @@ class InputViewController: UITableViewController {
     @IBOutlet weak var statusUpdateTextLabel: UIDatePicker!
     @IBOutlet weak var dateAndTimeTextLabel: UIDatePicker!
     
-    
-    let dateAndTimePickerCellIndexPath = IndexPath(row: 1, section: 1)
-    
-    let defaults = UserDefaults.standard
-    var izParcelz : IzParcel? {
-        
-        let name = nameTextLabel.text ?? ""
-        let address = addressTextLabel.text ?? ""
-        let trackingNumber = trackingNumTextLabel.text ?? ""
-        let notes =  notesTextLabel.text ?? ""
-        let dateAndTime = dateAndTimeTextLabel.date
-        let statusOfParcel = statusUpdateTextLabel.date
-        
-        
-        return IzParcel(name: name, address: address,
-                        trackingNumber: trackingNumber,
-                        notes: notes,
-                        dateAndTime: dateAndTime,
-                        statusUpdated: statusOfParcel)
-    }
-    
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let midnightToday = Calendar.current.startOfDay(for: Date())
-        dateAndTimeTextLabel.minimumDate = midnightToday
-        dateAndTimeTextLabel.date = midnightToday
-        
-        //updateDateViews()
-        
-        
-        //        nameTextLabel.delegate = self
-        //        statusTextLabel.delegate = self
-        
+        if let izParcels = izParcel {
+            nameTextLabel.text = izParcels.name
+            addressTextLabel.text = izParcels.address
+            trackingNumTextLabel.text = izParcels.trackingNumber
+            notesTextLabel.text = izParcels.notes
+            dateAndTimeTextLabel.date = izParcels.dateAndTime
+            statusUpdateTextLabel.date = izParcels.statusUpdated
+        }
     }
     
-    
     @IBAction func deleteButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
-//                performSegue(withIdentifier: "cell", sender: self)
-//                func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//                    let vc = segue.destination as! MainTableViewController
-//
-//                    if segue.identifier == "cell" {
-//
-//                        let mainVC = segue.destination as! MainTableViewController
-//                        performSegue(withIdentifier: "saveUnwind", sender: self)
-//                    }
-//
-//
-        print("Save Button Tapped")
+        print("A")
+        self.performSegue(withIdentifier: "saveUnwind", sender: self)
         
-        //                 let mainVC = segue.destination as! MainTableViewController
-        //      mainVC.data = nameTextLabel.text!
-        //
-        //
-        //
-        //        }
-        //                    vc.finalStatusText = self.statusText
-        //
-        //                    let mainVC = ViewController()
-        //                    self.present(mainVC, animated: true, completion: nil)
-        //
-        
-    }
-    func updateDateViews() {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                   let vc = segue.destination as! MainTableViewController
-        
-        if segue.identifier == "saveUnwind" {
-            func unwindInputScreen(unwindSegue: UIStoryboardSegue) {
-                guard let InputViewController = unwindSegue.source as? InputViewController,
-                      let izParcels = InputViewController.izParcelz else { return }
-                
-                
-                print("added")
-                izParcel.append(izParcels)
-                tableView.reloadData()
-            }
+        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            guard segue.identifier == "saveUnwind" else { return }
+            
+            let name = nameTextLabel.text!
+            let address = addressTextLabel.text!
+            let trackingNumber = trackingNumTextLabel.text!
+            let notes = notesTextLabel.text!
+            let dates = dateAndTimeTextLabel.date
+            let statusUpdate = statusUpdateTextLabel.datePickerMode
+            
+            izParcel = IzParcel(name: name, address: address, trackingNumber: trackingNumber, notes: notes, dateAndTime: dates, statusUpdated: dates)
         }
     }
+
 }
-
-
-//            extension InputViewController: UITextFieldDelegate {
-//
-//                func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//                    textField.resignFirstResponder()
-//                    return true
-//                }
-//            }
-//
-

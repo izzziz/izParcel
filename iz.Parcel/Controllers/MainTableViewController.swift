@@ -9,9 +9,9 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
+
     var izParcel = [IzParcel]()
     
-
         override func viewDidLoad() {
         super.viewDidLoad()
        

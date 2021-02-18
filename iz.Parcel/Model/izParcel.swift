@@ -10,7 +10,7 @@ import Foundation
 struct IzParcel: Codable {
     var name: String
     var address: String
-  //  var status: Bool
+    //var status: Bool
     var trackingNumber: String
     var notes: String
     
