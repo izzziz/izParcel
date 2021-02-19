@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6AI-Xl-KkM">
-                                <rect key="frame" x="10" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="80" id="fpI-dJ-lBJ" customClass="IzparcelCell" customModule="iz_Parcel" customModuleProvider="target">
@@ -26,7 +26,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fpI-dJ-lBJ" id="DP8-Gj-LGT" customClass="IzparcelCell" customModule="iz_Parcel" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
@@ -35,7 +34,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Hx5-dV-rtH"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Ovl-VX-gpH"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="kNi-OB-4Kv"/>
                                     <outlet property="prefetchDataSource" destination="BYZ-38-t0r" id="nC8-Rq-TVb"/>
                                 </connections>
@@ -44,8 +43,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6AI-Xl-KkM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="10" id="IXn-E1-HLa"/>
-                            <constraint firstItem="6AI-Xl-KkM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="MDD-ID-f8j"/>
+                            <constraint firstItem="6AI-Xl-KkM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="IXn-E1-HLa"/>
+                            <constraint firstItem="6AI-Xl-KkM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MDD-ID-f8j"/>
                             <constraint firstItem="6AI-Xl-KkM" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="T2q-Rs-1JZ"/>
                             <constraint firstItem="6AI-Xl-KkM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="XNw-x3-c2r"/>
                         </constraints>
@@ -58,7 +57,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="6AI-Xl-KkM" id="1yf-Wb-1ff"/>
+                        <outlet property="tableView" destination="6AI-Xl-KkM" id="53T-je-uxc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -358,9 +357,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

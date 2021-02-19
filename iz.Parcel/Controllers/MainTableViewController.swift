@@ -2,70 +2,90 @@
 //  MainTableViewController.swift
 //  iz.Parcel
 //
-//  Created by Izzat Jabali on 26/1/21.
+//  Created by Izzat Jabali on 19/2/21.
 //
 
 //import UIKit
 //
 //class MainTableViewController: UITableViewController {
-//    
 //
-//    var izParcel = [IzParcel]()
-//    
-//        override func viewDidLoad() {
+//
+//    var IzParcelz = [IzParcel]()
+//
+//    override func viewDidLoad() {
 //        super.viewDidLoad()
-//       
+//
+//        let nib = UINib(nibName: "IzparcelCell", bundle: nil)
+//        tableView.register(nib, forCellReuseIdentifier: "IzparcelCell")
+//        tableView.delegate = self
+//        tableView.dataSource = self
 //    }
-//    
+//
 //    // MARK: - Table view data source
-//    
+//
 //    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
 //        return 1
 //    }
-//    
+//
 //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        // #warning Incomplete implementation, return the number of rows
-//        return 1
+//        return IzParcelz.count
 //    }
-//    
-//    
+//
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = .short
-//        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "IzparcelCell", for: indexPath) as! IzparcelCell
+//
+//        let izPackage = IzParcelz[indexPath.row]
+//        cell.nameLabel.text = izPackage.name
+//        cell.addressLabel.text = izPackage.address
+//        cell.trackingNumLabel.text = izPackage.trackingNumber
+//
 //        return cell
 //    }
-//    
-//    // MARK: - Table view Delegate
+//
+//    // MARK: - TableView Delegate
+//
 //    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
 //        return true
 //    }
-//    
+//
 //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //        if editingStyle == .delete {
-//            izParcel.remove(at: indexPath.row)
+//            IzParcelz.remove(at: indexPath.row)
 //            tableView.deleteRows(at: [indexPath], with: .fade)
-//            IzParcel.saveIzParcel(izParcel)
+//            IzParcel.saveIzParcel(IzParcelz)
+//
 //        }
 //    }
-//    
-//    @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
-//        
+//
+//    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+//
+//        guard segue.identifier == "saveUnwind" else { return }
+//
+//        let sourceViewController = segue.source as! InputViewController
+//
+//        if let P = sourceViewController.izParcel {
+//            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+//                IzParcelz[selectedIndexPath.row] = P
+//                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+//            } else {
+//                let newIndexPath = IndexPath(row: IzParcelz.count, section: 0)
+//                IzParcelz.append(P)
+//                tableView.insertRows(at: [newIndexPath], with: .automatic)
+//            }
+//        }
+//
+//        IzParcel.saveIzParcel(IzParcelz)
 //    }
-//    
-//    //    // MARK: - ToDo Cell Delegate
-//    //
-//    //    func setParcel(_ sender: packageTableViewCell) {
-//    //        if let indexPath = tableView.indexPath(for: sender) {
-//    //            var izParcels = izParcel[indexPath.row]
-//    //
-//    //            izParcel[indexPath.row] = izParcels
-//    //            tableView.reloadRows(at: [indexPath], with: .automatic)
-//    //            IzParcel.saveIzParcel(izParcel)
-//    //        }
-//    //    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showDetails" {
+//            let izViewController = segue.destination as! InputViewController
+//            let indexPath = tableView.indexPathForSelectedRow!
+//            let selectedTodo = IzParcelz[indexPath.row]
+//
+//            izViewController.izParcel = selectedTodo
+//        }
+//    }
 //}
-
+//

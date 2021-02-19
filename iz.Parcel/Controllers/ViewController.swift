@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     var IzParcelz = [IzParcel]()
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,22 +25,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     // MARK: - TableView data source
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return IzParcelz.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IzparcelCell", for: indexPath) as! IzparcelCell
-   
+        
         let izPackage = IzParcelz[indexPath.row]
         cell.nameLabel.text = izPackage.name
         cell.addressLabel.text = izPackage.address
         cell.trackingNumLabel.text = izPackage.trackingNumber
-
+        
         return cell
     }
     // MARK: - TableView Delegate
@@ -47,18 +48,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             IzParcelz.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             IzParcel.saveIzParcel(IzParcelz)
-            
+
         }
     }
-
+    
+//    func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+//        print("Edit Clicked")
+//    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, UIView, actionPerformed: (Bool) -> Void) in
+            self.performSegue(withIdentifier: "showDetails", sender: nil)
+            actionPerformed(true)
+        }
+        edit.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        return UISwipeActionsConfiguration(actions: [edit])
+    }
+    
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-
+        
         guard segue.identifier == "saveUnwind" else { return }
         
         let sourceViewController = segue.source as! InputViewController
@@ -77,14 +92,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         IzParcel.saveIzParcel(IzParcelz)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetails" {
-            let izViewController = segue.destination as! InputViewController
-            let indexPath = tableView.indexPathForSelectedRow!
-            let selectedTodo = IzParcelz[indexPath.row]
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showDetails" {
+//            let izViewController = segue.destination as! InputViewController
+//            let indexPath = tableView.indexPathForSelectedRow!
+//            let selectedTodo = IzParcelz[indexPath.row]
+//            
+//            izViewController.izParcel = selectedTodo
+//        }
+//    }
 
-            izViewController.izParcel = selectedTodo
-        }
-    }
 }
 
