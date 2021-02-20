@@ -12,6 +12,8 @@ parcel delivery.
 
 - Using Static and Dynamic TableViews.
 - Implement the Multiple View Controllers : MVC Design Pattern.
-- Passing Data between ViewControllers using unwind segue.
-- Implementing swipe to delete and edit functionality in TableView.
+- Passing Data between ViewControllers using unwind segue
+- Implementing swipe to delete and edit functionality in TableView
+
+
 
