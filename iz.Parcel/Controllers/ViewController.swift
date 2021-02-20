@@ -13,15 +13,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     
     var IzParcelz = [IzParcel]()
-  
+    var parcelEditIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // navigationItem.leftBarButtonItem = editButtonItem
         
         let nib = UINib(nibName: "IzparcelCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "IzparcelCell")
         tableView.delegate = self
         tableView.dataSource = self
+        
+        if let saveIzParcel = IzParcel.loadIzParcel() {
+            IzParcelz = saveIzParcel
+        
+        }
     }
     // MARK: - TableView data source
     
@@ -58,17 +65,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-//    func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-//        print("Edit Clicked")
-//    }
+    func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        print("Edit Clicked")
+    }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, UIView, actionPerformed: (Bool) -> Void) in
+            //self.parcelEditIndex = indexPath.row
             self.performSegue(withIdentifier: "showDetails", sender: nil)
             actionPerformed(true)
         }
-        edit.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        edit.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
         return UISwipeActionsConfiguration(actions: [edit])
     }
     
@@ -92,15 +100,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         IzParcel.saveIzParcel(IzParcelz)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDetails" {
-//            let izViewController = segue.destination as! InputViewController
-//            let indexPath = tableView.indexPathForSelectedRow!
-//            let selectedTodo = IzParcelz[indexPath.row]
-//            
-//            izViewController.izParcel = selectedTodo
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails" {
+            let izViewController = segue.destination as! InputViewController
+            izViewController.parcelEditIndex = self.parcelEditIndex
+          //  let indexPath = tableView.indexPathForSelectedRow!
+       //     let selectedTodo = IzParcelz[indexPath.row]
 
+    //        izViewController.izParcel = selectedTodo
+        }
+    }
 }
 

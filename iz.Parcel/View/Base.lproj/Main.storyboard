@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6AI-Xl-KkM">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="80" id="fpI-dJ-lBJ" customClass="IzparcelCell" customModule="iz_Parcel" customModuleProvider="target">
@@ -29,7 +29,7 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <segue destination="BSp-wy-EDf" kind="showDetail" identifier="showDetails" id="rKb-qE-NFH"/>
+                                            <segue destination="BSp-wy-EDf" kind="presentation" identifier="showDetails" modalPresentationStyle="fullScreen" id="UfN-Ij-Zxp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" title="izParcel" largeTitleDisplayMode="always" id="U4d-jW-0gd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="R8c-qe-QKn">
                             <connections>
-                                <segue destination="tgp-pm-cEd" kind="presentation" id="vli-7l-S3w"/>
+                                <segue destination="tgp-pm-cEd" kind="presentation" modalPresentationStyle="fullScreen" id="vli-7l-S3w"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -69,7 +69,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="InputScreen" id="BSp-wy-EDf" customClass="InputViewController" customModule="iz_Parcel" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3st-aj-s19">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -264,9 +264,9 @@
                                                                 <constraint firstAttribute="height" constant="30" id="6vW-DU-iWf"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="131" id="zvE-OJ-apz"/>
                                                             </constraints>
-                                                            <state key="normal" title="DELETE"/>
+                                                            <state key="normal" title="CANCLE"/>
                                                             <connections>
-                                                                <action selector="deleteButton:" destination="BSp-wy-EDf" eventType="touchUpInside" id="5Ft-7E-SMC"/>
+                                                                <action selector="cancleButton:" destination="BSp-wy-EDf" eventType="touchUpInside" id="5Ft-7E-SMC"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F28-gs-c1d">
@@ -321,7 +321,7 @@
             <objects>
                 <navigationController id="tgp-pm-cEd" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TnS-aq-jXb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -352,7 +352,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rKb-qE-NFH"/>
+        <segue reference="UfN-Ij-Zxp"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
