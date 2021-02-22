@@ -39,6 +39,7 @@ class InputViewController: UITableViewController {
             
             
         }
+        
         if let index = parcelEditIndex {
             let parcel = IzParcelz[index]
             nameTextLabel.text = parcel.name
@@ -55,10 +56,9 @@ class InputViewController: UITableViewController {
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
-        print("A")
+        print("SaveButton Tapped")
         
         performSegue(withIdentifier: "saveUnwind", sender: self)
-
 }
     
     func updateSaveButtonState() {
@@ -81,8 +81,6 @@ class InputViewController: UITableViewController {
         let trackingNumber = trackingNumTextLabel.text!
         let notes = notesTextLabel.text!
         let dates = dateAndTimeTextLabel.date
-        
-  //      let statusUpdate = statusUpdateTextLabel.datePickerMode
         
         izParcel = IzParcel(name: name, address: address, trackingNumber: trackingNumber, notes: notes, dateAndTime: dates, statusUpdated: dates)
     }

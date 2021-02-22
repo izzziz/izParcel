@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // navigationItem.leftBarButtonItem = editButtonItem
+        // navigationItem.leftBarButtonItem = editButtonItem
         
         let nib = UINib(nibName: "IzparcelCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "IzparcelCell")
@@ -27,7 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let saveIzParcel = IzParcel.loadIzParcel() {
             IzParcelz = saveIzParcel
-        
+            
         }
     }
     // MARK: - TableView data source
@@ -50,23 +50,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+           return "         Name | Address | Status"
+       }
     // MARK: - TableView Delegate
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             IzParcelz.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             IzParcel.saveIzParcel(IzParcelz)
-
+            
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        print("Edit Clicked")
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -101,14 +101,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetails" {
-            let izViewController = segue.destination as! InputViewController
-            izViewController.parcelEditIndex = self.parcelEditIndex
-          //  let indexPath = tableView.indexPathForSelectedRow!
-       //     let selectedTodo = IzParcelz[indexPath.row]
-
-    //        izViewController.izParcel = selectedTodo
+        
+        guard segue.identifier == "showDetails" else {return}
+        
+        let izViewController = segue.destination as! InputViewController
+        
+         izViewController.parcelEditIndex = parcelEditIndex
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let selectedParcel = IzParcelz[indexPath.row]
+            
+            izViewController.izParcel = selectedParcel
+            
         }
     }
+    
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == "showDetails" {
+    //            let izViewController = segue.destination as! InputViewController
+    //            izViewController.parcelEditIndex = parcelEditIndex
+    //            let indexPath = tableView.indexPathForSelectedRow!
+    //            let selectedParcel = IzParcelz[indexPath.row]
+    //
+    //            izViewController.izParcel = selectedParcel
+    //
+    //
+    //            }
+    //        }
 }
+
 
