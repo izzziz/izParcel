@@ -18,8 +18,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // navigationItem.leftBarButtonItem = editButtonItem
-        
         let nib = UINib(nibName: "IzparcelCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "IzparcelCell")
         tableView.delegate = self
@@ -52,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-           return "         Name | Address | Status"
+           return "         Name    |       Address       |    Status"
        }
     // MARK: - TableView Delegate
     
